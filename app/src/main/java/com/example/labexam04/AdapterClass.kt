@@ -7,10 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 
-class AdapterClass(private val datalist:ArrayList<DataClass>):RecyclerView.Adapter<AdapterClass.ViewHolderClass>() {
+class AdapterClass(private var todo: List<ToDoDataClass>):RecyclerView.Adapter<AdapterClass.ViewHolderClass>() {
     class ViewHolderClass(itemView: View):RecyclerView.ViewHolder(itemView) {
         val rviewTopic:TextView = itemView.findViewById(R.id.ItemLTxtViewTopic)
-        val rviewPrioColor:TextView = itemView.findViewById(R.id.ItemLTtextViewPlevel)
+        val rviewPLevel:TextView = itemView.findViewById(R.id.ItemLTtextViewPlevel)
         val rviewRemTime:TextView = itemView.findViewById(R.id.ItemLTextViewRemTime)
     }
 
@@ -20,15 +20,20 @@ class AdapterClass(private val datalist:ArrayList<DataClass>):RecyclerView.Adapt
     }
 
     override fun getItemCount(): Int {
-        return datalist.size
+        return todo.size
     }
 
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-        val currentItem = datalist[position]
-        holder.rviewTopic.text = currentItem.dataTopic
-        holder.rviewPrioColor.text = currentItem.prioColor
-        holder.rviewRemTime.text = currentItem.remTime
+        val currentItem = todo[position]
+        holder.rviewTopic.text = currentItem.toDoTopic
+        holder.rviewPLevel.text = currentItem.toDoPLevel
+        holder.rviewRemTime.text = currentItem.toDoDate
 
+    }
+
+    fun refreshData(newToDo: List<ToDoDataClass>){
+        todo = newToDo
+        notifyDataSetChanged()
     }
 
 }
