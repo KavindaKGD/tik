@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
+import com.example.labexam04.databinding.FragmentAddBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,11 +21,17 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class AddFragment : Fragment() {
+
+    private lateinit var spinner: Spinner
+
+    private lateinit var binding: FragmentAddBinding
+    private lateinit var db: ToDoDatabaseHelper
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var spinner: Spinner
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +45,8 @@ class AddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false)
+        binding = FragmentAddBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,6 +60,34 @@ class AddFragment : Fragment() {
 
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = arrayAdapter
+
+        //adding data
+        db = ToDoDatabaseHelper(requireContext())
+
+        binding.addPBtnSubmit.setOnClickListener {
+            val topic = binding.addPEditTextTopic.text.toString()
+            val date = binding.addPEditTextDate.text.toString()
+            val time = binding.addPEditTextTime.text.toString()
+            val details = binding.addPEditTextMultiLineDetails.text.toString()
+            val priorityLevel = binding.addPSpinnerPLevel.selectedItem.toString()
+
+            val todo = ToDoDataClass(0, topic, details, priorityLevel, date, time)
+            db.insertToDo(todo)
+
+            Toast.makeText(requireContext(), "ToDo Saved", Toast.LENGTH_SHORT).show()
+
+            // Optionally, you can clear the input fields after saving
+            clearInputFields()
+        }
+
+    }
+
+    private fun clearInputFields() {
+        binding.addPEditTextTopic.text.clear()
+        binding.addPEditTextDate.text.clear()
+        binding.addPEditTextTime.text.clear()
+        binding.addPEditTextMultiLineDetails.text.clear()
+        // You might want to reset the Spinner selection as well
     }
 
     companion object {
