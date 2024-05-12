@@ -13,67 +13,107 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/addPTextViewTopic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/topic" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/topic"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/addPEditTextTopic"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/textbox"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Name" />
+                android:text="Topica of your task"
+                android:textAlignment="center"
+                android:textColor="@color/hint"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/addPTextViewDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/date" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/date"
+                android:textSize="20sp"/>
 
             <EditText
                 android:id="@+id/addPEditTextDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/textbox"
                 android:ems="10"
-                android:inputType="date" />
+                android:inputType="date"
+                android:textAlignment="center"
+                android:textColor="@color/hint"
+                android:textStyle="bold"
+                android:text="DD/MM/YYY"/>
 
             <TextView
                 android:id="@+id/addPTextViewTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/time" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/time"
+                android:textSize="20sp"/>
 
             <EditText
                 android:id="@+id/addPEditTextTime"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/textbox"
                 android:ems="10"
-                android:inputType="time" />
+                android:inputType="time"
+                android:textAlignment="center"
+                android:textColor="@color/hint"
+                android:textStyle="bold"
+                android:text="HH:MM"/>
 
             <TextView
                 android:id="@+id/addPTextViewDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/details" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/details"
+                android:textSize="20sp"/>
 
             <EditText
                 android:id="@+id/addPEditTextMultiLineDetails"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
+                android:background="@drawable/textbox"
                 android:ems="10"
                 android:gravity="start|top"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:text="More details about your task"
+                android:textAlignment="center"
+                android:textColor="@color/hint"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/addPTextViewPLevel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/pLevel" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato"
+                android:text="@string/pLevel"
+                android:textSize="20sp"/>
 
             <Spinner
                 android:id="@+id/addPSpinnerPLevel"
@@ -84,7 +124,10 @@
                 android:id="@+id/addPBtnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="100dp"
+                android:backgroundTint="@color/design_default_color_primary_variant"
+                android:text="Submit" />
 
         </LinearLayout>
     </ScrollView>
