@@ -8,7 +8,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:backgroundTint="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +26,8 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/lato"
                 android:text="@string/topic"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
 
             <EditText
                 android:id="@+id/addPEditTextTopic"
@@ -36,7 +39,7 @@
                 android:text="Topica of your task"
                 android:textAlignment="center"
                 android:textColor="@color/hint"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/addPTextViewDate"
@@ -46,7 +49,8 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/lato"
                 android:text="@string/date"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
 
             <EditText
                 android:id="@+id/addPEditTextDate"
@@ -55,10 +59,10 @@
                 android:background="@drawable/textbox"
                 android:ems="10"
                 android:inputType="date"
+                android:text="DD/MM/YYY"
                 android:textAlignment="center"
                 android:textColor="@color/hint"
-                android:textStyle="bold"
-                android:text="DD/MM/YYY"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/addPTextViewTime"
@@ -68,7 +72,8 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/lato"
                 android:text="@string/time"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
 
             <EditText
                 android:id="@+id/addPEditTextTime"
@@ -77,10 +82,10 @@
                 android:background="@drawable/textbox"
                 android:ems="10"
                 android:inputType="time"
+                android:text="HH:MM"
                 android:textAlignment="center"
                 android:textColor="@color/hint"
-                android:textStyle="bold"
-                android:text="HH:MM"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/addPTextViewDetails"
@@ -90,7 +95,8 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/lato"
                 android:text="@string/details"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
 
             <EditText
                 android:id="@+id/addPEditTextMultiLineDetails"
@@ -111,9 +117,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
                 android:fontFamily="@font/lato"
                 android:text="@string/pLevel"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
 
             <Spinner
                 android:id="@+id/addPSpinnerPLevel"
@@ -122,12 +131,13 @@
 
             <Button
                 android:id="@+id/addPBtnSubmit"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
+                android:layout_marginStart="250dp"
                 android:layout_marginTop="100dp"
                 android:backgroundTint="@color/design_default_color_primary_variant"
-                android:text="Submit" />
+                android:text="Submit"
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </ScrollView>
