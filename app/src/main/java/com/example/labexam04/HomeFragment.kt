@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +19,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class HomeFragment : Fragment() {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var dataList: ArrayList<DataClass>
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +39,30 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
+        recyclerView = rootView.findViewById(R.id.recycleViewId)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+
+        dataList = arrayListOf()
+        generateExampleData()
+
+        val adapter = AdapterClass(dataList)
+        recyclerView.adapter = adapter
+
+        return rootView
+    }
+
+    private fun generateExampleData() {
+        // Example data for demonstration purposes
+        val exampleData1 = DataClass("Topic 1", "Priority 1", "Time 1")
+        val exampleData2 = DataClass("Topic 2", "Priority 2", "Time 2")
+        val exampleData3 = DataClass("Topic 3", "Priority 3", "Time 3")
+
+        // Add example data to the list
+        dataList.add(exampleData1)
+        dataList.add(exampleData2)
+        dataList.add(exampleData3)
     }
 
     companion object {

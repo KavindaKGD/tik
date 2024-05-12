@@ -16,13 +16,13 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textViewTopic"
+                android:id="@+id/addPTextViewTopic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/topic" />
 
             <EditText
-                android:id="@+id/editTextTopic"
+                android:id="@+id/addPEditTextTopic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -30,39 +30,39 @@
                 android:text="Name" />
 
             <TextView
-                android:id="@+id/textViewDate"
+                android:id="@+id/addPTextViewDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/date" />
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/addPEditTextDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="date" />
 
             <TextView
-                android:id="@+id/textViewTime"
+                android:id="@+id/addPTextViewTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/time" />
 
             <EditText
-                android:id="@+id/editTextTime"
+                android:id="@+id/addPEditTextTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="time" />
 
             <TextView
-                android:id="@+id/textViewDetails"
+                android:id="@+id/addPTextViewDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/details" />
 
             <EditText
-                android:id="@+id/editTextMultiLineDetails"
+                android:id="@+id/addPEditTextMultiLineDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -70,18 +70,18 @@
                 android:inputType="textMultiLine" />
 
             <TextView
-                android:id="@+id/textViewPLevel"
+                android:id="@+id/addPTextViewPLevel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/pLevel" />
 
             <Spinner
-                android:id="@+id/spinnerPLevel"
+                android:id="@+id/addPSpinnerPLevel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/btnSubmit"
+                android:id="@+id/addPBtnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Button" />

@@ -44,7 +44,7 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        spinner = view.findViewById(R.id.spinnerPLevel)
+        spinner = view.findViewById(R.id.addPSpinnerPLevel)
 
         val listItems = listOf("Low", "Medium", "High")
 
