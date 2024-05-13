@@ -1,13 +1,23 @@
 package com.example.labexam04
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 
-class AdapterClass(private var todo: List<ToDoDataClass>):RecyclerView.Adapter<AdapterClass.ViewHolderClass>() {
+class AdapterClass(
+    private var todo: List<ToDoDataClass>,
+    private val itemClickListener: OnItemClickListener
+):RecyclerView.Adapter<AdapterClass.ViewHolderClass>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(todo: ToDoDataClass)
+    }
+
     class ViewHolderClass(itemView: View):RecyclerView.ViewHolder(itemView) {
         val rviewTopic:TextView = itemView.findViewById(R.id.ItemLTxtViewTopic)
         val rviewPLevel:TextView = itemView.findViewById(R.id.ItemLTtextViewPlevel)
@@ -28,6 +38,10 @@ class AdapterClass(private var todo: List<ToDoDataClass>):RecyclerView.Adapter<A
         holder.rviewTopic.text = currentItem.toDoTopic
         holder.rviewPLevel.text = currentItem.toDoPLevel
         holder.rviewRemTime.text = currentItem.toDoDate
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(currentItem)
+        }
 
     }
 

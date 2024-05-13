@@ -12,10 +12,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), AdapterClass.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var db: ToDoDatabaseHelper
-
     private lateinit var toDOList: List<ToDoDataClass>
 
     override fun onCreateView(
@@ -39,13 +38,33 @@ class HomeFragment : Fragment() {
 
             // Once db is initialized, populate dataList
             toDOList = db.getAllToDos()
-            val adapter = AdapterClass(toDOList)
+            val adapter = AdapterClass(toDOList, this@HomeFragment)
             recyclerView.adapter = adapter
 
         }
 
         return rootView
     }
+
+
+    override fun onItemClick(todo: ToDoDataClass) {
+        val bundle = Bundle().apply {
+            putInt("id", todo.toDoId)
+            putString("topic", todo.toDoTopic)
+            putString("details", todo.toDoDetails)
+            putString("date", todo.toDoDate)
+            putString("time", todo.toDoTime)
+            putString("plevel", todo.toDoPLevel)
+        }
+        val detailsFragment = DetailsFragment().apply {
+            arguments = bundle
+        }
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_layout, detailsFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
 
     //private fun generateExampleData() {
     /*// Example data for demonstration purposes
@@ -58,4 +77,9 @@ class HomeFragment : Fragment() {
         dataList.add(exampleData2)
         dataList.add(exampleData3)*/
     /*}*/
+
+
+
+
+
 }
