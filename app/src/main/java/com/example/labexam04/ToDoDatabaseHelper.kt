@@ -20,7 +20,16 @@ class ToDoDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_N
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER, $COLUMN_TOPIC TEXT, $COLUMN_DETAILS TEXT, $COLUMN_PRIOLEVEL TEXT, $COLUMN_DATE TEXT, $COLUMN_TIME)"
+        val createTableQuery = """
+            CREATE TABLE $TABLE_NAME(
+            $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            $COLUMN_TOPIC TEXT,
+            $COLUMN_DETAILS TEXT,
+            $COLUMN_PRIOLEVEL TEXT,
+            $COLUMN_DATE TEXT,
+            $COLUMN_TIME
+            )
+        """.trimIndent()
         db?.execSQL(createTableQuery)
     }
 
@@ -44,26 +53,66 @@ class ToDoDatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_N
         db.close()
     }
 
+    fun updateToDo(todo: ToDoDataClass) {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_TOPIC, todo.toDoTopic)
+            put(COLUMN_DETAILS, todo.toDoDetails)
+            put(COLUMN_PRIOLEVEL, todo.toDoPLevel)
+            put(COLUMN_DATE, todo.toDoDate)
+            put(COLUMN_TIME, todo.toDoTime)
+        }
+        db.update(TABLE_NAME, values, "$COLUMN_ID = ?", arrayOf(todo.toDoId.toString()))
+        db.close()
+    }
+
+    fun getToDoById(id: Int): ToDoDataClass? {
+        val db = readableDatabase
+        var todo: ToDoDataClass? = null
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = ?"
+        val cursor = db.rawQuery(query, arrayOf(id.toString()))
+        if (cursor.moveToFirst()) {
+            val topic = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TOPIC))
+            val details = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DETAILS))
+            val plevel = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PRIOLEVEL))
+            val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
+            val time = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME))
+            todo = ToDoDataClass(id, topic, details, plevel, date, time)
+        }
+        cursor.close()
+        db.close()
+        return todo
+    }
+
     fun getAllToDos():List<ToDoDataClass>{
         val toDoList = mutableListOf<ToDoDataClass>()
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_NAME"
         val cursor = db.rawQuery(query, null)
 
-        while (cursor.moveToNext()){
+        cursor.use {
+        while (cursor.moveToNext()) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
             val topic = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TOPIC))
             val details = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DETAILS))
             val plevel = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PRIOLEVEL))
             val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
             val time = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME))
-
             val todo = ToDoDataClass(id, topic, details, plevel, date, time)
             toDoList.add(todo)
-
+            }
         }
-        cursor.close()
+
         db.close()
         return toDoList
     }
+
+    fun deleteToDoById(id: Int) {
+        val db = writableDatabase
+        db.delete(TABLE_NAME, "$COLUMN_ID = ?", arrayOf(id.toString()))
+        db.close()
+    }
+
+
+
 }

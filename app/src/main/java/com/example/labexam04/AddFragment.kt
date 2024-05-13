@@ -10,34 +10,28 @@ import android.widget.Spinner
 import android.widget.Toast
 import com.example.labexam04.databinding.FragmentAddBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AddFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AddFragment : Fragment() {
-
-    private lateinit var spinner: Spinner
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var db: ToDoDatabaseHelper
 
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-
+    private var id: Int? = null
+    private var topic: String? = null
+    private var details: String? = null
+    private var date: String? = null
+    private var time: String? = null
+    private var plevel: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            id = it.getInt("id")
+            topic = it.getString("topic")
+            details = it.getString("details")
+            date = it.getString("date")
+            time = it.getString("time")
+            plevel = it.getString("plevel")
         }
     }
 
@@ -52,61 +46,86 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        spinner = view.findViewById(R.id.addPSpinnerPLevel)
-
         val listItems = listOf("Low", "Medium", "High")
-
         val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listItems)
-
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = arrayAdapter
+        binding.addPSpinnerPLevel.adapter = arrayAdapter
 
         //adding data
         db = ToDoDatabaseHelper(requireContext())
 
+        if(id != null){
+            binding.addPEditTextTopic.setText(topic)
+            binding.addPEditTextDate.setText(date)
+            binding.addPEditTextTime.setText(time)
+            binding.addPEditTextMultiLineDetails.setText(details)
+            val plevelPosition = listItems.indexOf(plevel)
+            binding.addPSpinnerPLevel.setSelection(plevelPosition)
+        }
+
         binding.addPBtnSubmit.setOnClickListener {
-            val topic = binding.addPEditTextTopic.text.toString()
-            val date = binding.addPEditTextDate.text.toString()
-            val time = binding.addPEditTextTime.text.toString()
-            val details = binding.addPEditTextMultiLineDetails.text.toString()
-            val priorityLevel = binding.addPSpinnerPLevel.selectedItem.toString()
+            if (validateInput()){
+                val newTopic = binding.addPEditTextTopic.text.toString()
+                val newDate = binding.addPEditTextDate.text.toString()
+                val newTime = binding.addPEditTextTime.text.toString()
+                val newDetails = binding.addPEditTextMultiLineDetails.text.toString()
+                val newPlevel = binding.addPSpinnerPLevel.selectedItem.toString()
 
-            val todo = ToDoDataClass(0, topic, details, priorityLevel, date, time)
-            db.insertToDo(todo)
+                val todo = ToDoDataClass(id ?: 0, newTopic, newDetails, newPlevel, newDate, newTime)
 
-            Toast.makeText(requireContext(), "ToDo Saved", Toast.LENGTH_SHORT).show()
+                if (id != null) {
+                    db.updateToDo(todo)
+                    Toast.makeText(requireContext(), "ToDo Updated", Toast.LENGTH_SHORT).show()
+                } else {
+                    db.insertToDo(todo)
+                    Toast.makeText(requireContext(), "ToDo Saved", Toast.LENGTH_SHORT).show()
+                }
 
-            // Optionally, you can clear the input fields after saving
-            clearInputFields()
+                requireActivity().supportFragmentManager.popBackStack()
+            }
+
         }
 
     }
 
-    private fun clearInputFields() {
-        binding.addPEditTextTopic.text.clear()
-        binding.addPEditTextDate.text.clear()
-        binding.addPEditTextTime.text.clear()
-        binding.addPEditTextMultiLineDetails.text.clear()
-        // You might want to reset the Spinner selection as well
+    private fun validateInput(): Boolean {
+        return when {
+            binding.addPEditTextTopic.text.isNullOrEmpty() -> {
+                showToast("Please enter a topic")
+                false
+            }
+            binding.addPEditTextDate.text.isNullOrEmpty() -> {
+                showToast("Please enter a date")
+                false
+            }
+            binding.addPEditTextTime.text.isNullOrEmpty() -> {
+                showToast("Please enter a time")
+                false
+            }
+            binding.addPEditTextMultiLineDetails.text.isNullOrEmpty() -> {
+                showToast("Please enter details")
+                false
+            }
+            else -> true
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(id: Int?, topic: String?, details: String?, date: String?, time: String?, plevel: String?) =
             AddFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt("id", id ?: 0)
+                    putString("topic", topic)
+                    putString("details", details)
+                    putString("date", date)
+                    putString("time", time)
+                    putString("plevel", plevel)
                 }
             }
     }
+
 }

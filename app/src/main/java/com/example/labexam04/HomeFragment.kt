@@ -15,35 +15,35 @@ import kotlinx.coroutines.withContext
 class HomeFragment : Fragment(), AdapterClass.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var db: ToDoDatabaseHelper
-    private lateinit var toDOList: List<ToDoDataClass>
+    private lateinit var adapter: AdapterClass
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerView = rootView.findViewById(R.id.recycleViewId)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
-
-        /*        toDOList = listOf()
-        generateExampleData()*/
-
-        // Initialize db asynchronously
-        CoroutineScope(Dispatchers.Main).launch {
-            db = withContext(Dispatchers.IO) {
-                ToDoDatabaseHelper(requireContext())
-            }
-
-            // Once db is initialized, populate dataList
-            toDOList = db.getAllToDos()
-            val adapter = AdapterClass(toDOList, this@HomeFragment)
-            recyclerView.adapter = adapter
-
-        }
-
+        adapter = AdapterClass(emptyList(), this)
+        recyclerView.adapter = adapter
         return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadData()
+    }
+
+    private fun loadData(){
+        CoroutineScope(Dispatchers.Main).launch {
+
+            val toDOList = withContext(Dispatchers.IO){
+                db = ToDoDatabaseHelper(requireContext())
+                db.getAllToDos()
+            }
+            adapter.refreshData(toDOList)
+        }
     }
 
 
@@ -65,20 +65,10 @@ class HomeFragment : Fragment(), AdapterClass.OnItemClickListener {
             .commit()
     }
 
-
-    //private fun generateExampleData() {
-    /*// Example data for demonstration purposes
-        val exampleData1 = DataClass("Topic 1", "Priority 1", "Time 1")
-        val exampleData2 = DataClass("Topic 2", "Priority 2", "Time 2")
-        val exampleData3 = DataClass("Topic 3", "Priority 3", "Time 3")
-
-        // Add example data to the list
-        dataList.add(exampleData1)
-        dataList.add(exampleData2)
-        dataList.add(exampleData3)*/
-    /*}*/
-
-
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
 
 
 

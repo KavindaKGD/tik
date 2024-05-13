@@ -1,5 +1,6 @@
 package com.example.labexam04
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,8 +21,9 @@ class AdapterClass(
 
     class ViewHolderClass(itemView: View):RecyclerView.ViewHolder(itemView) {
         val rviewTopic:TextView = itemView.findViewById(R.id.ItemLTxtViewTopic)
-        val rviewPLevel:TextView = itemView.findViewById(R.id.ItemLTtextViewPlevel)
+        val rviewPriority:TextView = itemView.findViewById(R.id.ItemLTextViewPriority)
         val rviewRemTime:TextView = itemView.findViewById(R.id.ItemLTextViewRemTime)
+        val rviewPLevel:TextView = itemView.findViewById(R.id.ItemLTtextViewPlevel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
@@ -36,8 +38,9 @@ class AdapterClass(
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val currentItem = todo[position]
         holder.rviewTopic.text = currentItem.toDoTopic
-        holder.rviewPLevel.text = currentItem.toDoPLevel
+        holder.rviewPriority.text = "Priority:"
         holder.rviewRemTime.text = currentItem.toDoDate
+        holder.rviewPLevel.text = currentItem.toDoPLevel
 
         holder.itemView.setOnClickListener {
             itemClickListener.onItemClick(currentItem)
@@ -45,6 +48,7 @@ class AdapterClass(
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun refreshData(newToDo: List<ToDoDataClass>){
         todo = newToDo
         notifyDataSetChanged()
