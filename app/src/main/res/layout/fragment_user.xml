@@ -53,21 +53,19 @@
         </LinearLayout>
 
 
-
-
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/lato"
-                android:text="History"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:background="@drawable/custom_btn"
-                android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_btn"
+            android:backgroundTint="@color/darkblue"
+            android:fontFamily="@font/lato"
+            android:text="History"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
 
