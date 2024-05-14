@@ -3,7 +3,12 @@
     <style name="Base.Theme.LabExam04" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/lightblue</item>
     </style>
 
     <style name="Theme.LabExam04" parent="Base.Theme.LabExam04" />
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/darkblue</item>
+    </style>
 </resources>

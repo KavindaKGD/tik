@@ -15,140 +15,63 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/viewPTextViewTopic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/lato"
-            android:text="@string/topic"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/viewPEditTextTopic"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/textbox"
-            android:ems="10"
-            android:inputType="text"
-            android:text="ITP VIVA"
-            android:textColor="@color/hint"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/viewPTextViewDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/lato"
-            android:text="@string/date"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
-
-        <EditText
-            android:id="@+id/viewPEditTextDate"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/textbox"
-            android:ems="10"
-            android:inputType="date"
-            android:text="12/06/2024"
-            android:textColor="@color/hint"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/viewPTextViewTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/lato"
-            android:text="@string/time"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
-
-        <EditText
-            android:id="@+id/viewPEditTextTime"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/textbox"
-            android:ems="10"
-            android:inputType="time"
-            android:text="17:00"
-            android:textColor="@color/hint"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/viewPTextViewDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/lato"
-            android:text="@string/details"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
-
-        <EditText
-            android:id="@+id/viewPEditTextMultiLineDetails"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/textbox"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:text="ITP viva will be held"
-
-            android:textColor="@color/hint"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/viewPTextViewPLevel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/lato"
-            android:text="@string/pLevel"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
-
-        <EditText
-            android:id="@+id/viewPEditPLevel"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/textbox"
-            android:ems="10"
-            android:inputType="time"
-            android:text="High"
-            android:textColor="@color/hint"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button"
+            android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="5dp"
-            android:backgroundTint="#396597"
-            android:text="Edit"
-            android:textColor="@color/white" />
+            android:fontFamily="@font/poppins"
+            android:text="Profile"
+            android:textColor="@color/darkblue"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
-            android:backgroundTint="#CC4D4D"
-            android:text="Delete"
-            android:textColor="@color/white" />
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/baseline_account_circle_24" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/lato"
+                android:gravity="center"
+                android:text="DILSHAN KAVINDA"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/lato"
+                android:text="History"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:background="@drawable/custom_btn"
+                android:textColor="@color/white"/>
+
+
+
+
 
 
     </LinearLayout>

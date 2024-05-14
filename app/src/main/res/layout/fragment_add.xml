@@ -19,26 +19,36 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="Add ToDo"
+                android:textColor="@color/darkblue"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/addPTextViewTopic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/lato"
                 android:text="@string/topic"
-                android:textSize="20sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/addPEditTextTopic"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/textbox"
+                android:background="@drawable/border"
                 android:ems="10"
+                android:hint="Topic of your task"
                 android:inputType="text"
-                android:text="Topica of your task"
                 android:textAlignment="center"
-                android:textColor="@color/hint"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -56,12 +66,12 @@
                 android:id="@+id/addPEditTextDate"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/textbox"
+                android:background="@drawable/border"
                 android:ems="10"
+                android:hint="DD/MM/YYYY"
                 android:inputType="date"
-                android:text="DD/MM/YYY"
                 android:textAlignment="center"
-                android:textColor="@color/hint"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -79,12 +89,12 @@
                 android:id="@+id/addPEditTextTime"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/textbox"
+                android:background="@drawable/border"
                 android:ems="10"
+                android:hint="HH:MM"
                 android:inputType="time"
-                android:text="HH:MM"
                 android:textAlignment="center"
-                android:textColor="@color/hint"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -102,13 +112,13 @@
                 android:id="@+id/addPEditTextMultiLineDetails"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@drawable/textbox"
+                android:background="@drawable/border"
                 android:ems="10"
                 android:gravity="start|top"
+                android:hint="More details about your ToDo"
                 android:inputType="textMultiLine"
-                android:text="More details about your task"
                 android:textAlignment="center"
-                android:textColor="@color/hint"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -127,17 +137,19 @@
             <Spinner
                 android:id="@+id/addPSpinnerPLevel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"/>
 
             <Button
                 android:id="@+id/addPBtnSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="250dp"
-                android:layout_marginTop="100dp"
-                android:backgroundTint="@color/design_default_color_primary_variant"
-                android:text="Submit"
-                android:textColor="@color/white" />
+                android:layout_marginTop="80dp"
+                android:background="@drawable/custom_btn"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
 
         </LinearLayout>
     </ScrollView>

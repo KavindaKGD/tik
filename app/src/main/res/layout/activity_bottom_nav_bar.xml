@@ -34,11 +34,12 @@
             android:id="@+id/bottomNavBarID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:backgroundTint="#38B6FF"
+            app:backgroundTint="@color/lightblue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_menu" />
+            app:menu="@menu/bottom_menu"
+            app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
